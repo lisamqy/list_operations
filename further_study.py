@@ -83,7 +83,7 @@ def custom_insert(input_list, index, value):
 
     """
     input_list[index:index] = [value]
-    pass
+    
 
 
 def custom_remove(input_list, value):
@@ -103,7 +103,7 @@ def custom_remove(input_list, value):
     """
     
     input_list[0:1] = []
-    pass
+    
 
 
 def custom_pop(input_list):
@@ -186,7 +186,7 @@ def custom_reverse(input_list):
         input_list[i] = input_list[-(i+1)]
         input_list[-(i+1)] = temp
 
-    pass
+    
 
 
 def custom_contains(input_list, value):
