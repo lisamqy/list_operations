@@ -13,10 +13,11 @@ def custom_len(input_list):
 
         >>> custom_len(['Do', 'Re', 'Mi', 'Fa', 'So', 'La', 'Ti', 'Do'])
         8
-
+        
     """
-
-    return 0
+    if input_list == []:
+        return 0
+    return 1 + custom_len(input_list[1:])
 
 
 # For the next four exercises, you'll need to be clever and think about ways
@@ -43,8 +44,7 @@ def custom_append(input_list, value):
         True
 
     """
-
-    pass
+    input_list[-1:] = [input_list[-1], value]
 
 
 def custom_extend(input_list, second_list):
@@ -62,8 +62,10 @@ def custom_extend(input_list, second_list):
         True
 
     """
-
-    pass
+    for element in second_list:
+        input_list[-1:] = [input_list[-1], element]
+        
+    
 
 
 def custom_insert(input_list, index, value):
@@ -80,7 +82,7 @@ def custom_insert(input_list, index, value):
         True
 
     """
-
+    input_list[index:index] = [value]
     pass
 
 
@@ -99,7 +101,8 @@ def custom_remove(input_list, value):
         True
 
     """
-
+    
+    input_list[0:1] = []
     pass
 
 
@@ -118,8 +121,9 @@ def custom_pop(input_list):
         ['Jan', 'Feb']
 
     """
-
-    return None
+    temp = input_list[-1]
+    input_list[-1:]=[]
+    return temp
 
 
 def custom_index(input_list, value):
@@ -134,8 +138,9 @@ def custom_index(input_list, value):
         1
 
     """
-
-    return 0
+    if input_list[0] == value:
+        return 0
+    return 1 + custom_index(input_list[1:],value)
 
 
 def custom_count(input_list, value):
@@ -150,8 +155,12 @@ def custom_count(input_list, value):
         2
 
     """
+    times_appeared = 0
+    for element in input_list: 
+        if element == value:
+            times_appeared+=1
 
-    return 0
+    return times_appeared
 
 
 def custom_reverse(input_list):
@@ -167,8 +176,15 @@ def custom_reverse(input_list):
         >>> custom_reverse(multiples)
         >>> multiples == [27, 24, 21, 18, 15, 12, 9, 6, 3, 0]
         True
+        
 
     """
+    #input_list = input_list[::-1]
+    half = int(len(input_list) / 2)
+    for i in range(half):
+        temp = input_list[i]
+        input_list[i] = input_list[-(i+1)]
+        input_list[-(i+1)] = temp
 
     pass
 
@@ -189,8 +205,10 @@ def custom_contains(input_list, value):
         True
 
     """
-
-    return None
+    for x in input_list:
+        if x == value:
+            return True
+    return False
 
 
 def custom_equality(some_list, another_list):
@@ -208,8 +226,12 @@ def custom_equality(some_list, another_list):
         False
 
     """
-
-    return None
+    if len(some_list) != len(another_list):
+        return False
+    for i in range(len(some_list)): # -> range(3) -> for i in [0, 1, 2] 
+        if some_list[i] != another_list[i]: # in first loop i=0, so you compare some_list[0]!=another_list[0]
+            return False
+    return True
 
 
 # This is the part were we actually run the doctests.
